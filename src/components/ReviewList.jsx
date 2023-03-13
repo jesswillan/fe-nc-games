@@ -1,21 +1,41 @@
 import {useState, useEffect} from 'react';
-import axios from 'axios';
-import {getReviews} from '../utils/api';
+import {getReviews, getUsers} from '../utils/api';
 import ReviewCard from './ReviewCard';
 
 const ReviewList = () => {
   const [reviews, setReviews] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews().then((reviewsData) => {
-      setReviews(reviewsData.reviews);
-      setIsLoading(false);
+    Promise.all([getReviews(), getUsers()]).then(([reviewsData, usersData]) => {
+      setReviews(reviewsData);
+      setUsers(usersData);
     });
+    setIsLoading(false);
   });
 
-  return <main>{isLoading ? <p>Loading...</p> : <p>Not loading</p>}</main>;
+  const getAvatar = (reviewOwner) => {
+    const user = users.find((user) => user.username === reviewOwner);
+    return user ? user.avatar_url : null;
+  };
+
+  return (
+    <main className="container">
+      <ul className='reviewList'>
+        {reviews.map((review) => {
+          return (
+            <ReviewCard
+              key={review.review_id}
+              review={review}
+              avatarUrl={getAvatar(review.owner)}
+            />
+          );
+        })}
+      </ul>
+    </main>
+  );
 };
 
 export default ReviewList;

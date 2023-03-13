@@ -1,5 +1,4 @@
-import {useState} from 'react'
-import { getReviews } from '../utils/api';
+import {useState} from 'react';
 import ReviewList from './ReviewList';
 
 const Reviews = () => {

@@ -9,3 +9,9 @@ export const getReviews = () => {
     return data.reviews;
   });
 };
+
+export const getUsers = () => {
+  return reviewsApi.get('/users').then(({data}) => {
+    return data.users
+  })
+}
