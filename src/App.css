@@ -1,3 +1,73 @@
 .App {
-  text-align: center;
+  height: 100%;
+  background-color: #1f2954;
+  color: #fff;
 }
+
+h1 {
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  background-color: #b30080;
+}
+
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+}
+
+.reviewCardContainer {
+  flex: 50%;
+  width: 300px;
+  /* height: 500px; */
+}
+
+.reviewCard {
+  width: 80%;
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 12% 12% 64% 12%;
+  gap: 0px 0px;
+  grid-template-areas:
+    'reviewCardUserAvatar reviewCardOwner'
+    'reviewCardTitle reviewCardTitle'
+    'reviewCardImg reviewCardImg'
+    'reviewCardVotes reviewCardComment';
+  /* overflow: hidden; */
+  padding: 20px;
+  border: 2px #fff solid;
+  /* margin: 20px 20px; */
+}
+
+#reviewCardUserAvatar {
+  height: 80%;
+  border-radius: 20%;
+}
+
+.reviewCardOwner {
+  grid-area: reviewCardOwner;
+}
+.reviewCardTitle {
+  grid-area: reviewCardTitle;
+}
+.reviewCardImg {
+  grid-area: reviewCardImg;
+  width: 100%;
+}
+.reviewCardVotes {
+  grid-area: reviewCardVotes;
+}
+.reviewCardComment {
+  grid-area: reviewCardComment;
+}
+
+@media screen and (min-width: 480px) {
+  .reviewList {
+    flex-flow: row wrap;
+  }
+}
+
+/* @media (min-width: 770px) */
+
+/* @media (min-width: 1025px) */
