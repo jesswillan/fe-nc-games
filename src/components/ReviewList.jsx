@@ -22,8 +22,8 @@ const ReviewList = () => {
   };
 
   return (
-    <main className="container">
-      <ul className='reviewList'>
+    <main className="reviewListBox">
+      <ul className="reviewList">
         {reviews.map((review) => {
           return (
             <ReviewCard

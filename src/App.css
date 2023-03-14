@@ -1,28 +1,73 @@
-#Header {
+.App {
+  height: 100%;
+  background-color: #1f2954;
+  color: #fff;
+}
+
+h1 {
+  margin: 0 auto;
+  padding: 30px;
   text-align: center;
+  background-color: #b30080;
 }
 
-#reviewCard {
+.reviewList {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+}
+
+.reviewCardContainer {
+  flex: 50%;
+  width: 300px;
+  /* height: 500px; */
+}
+
+.reviewCard {
+  width: 80%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 12% 12% 64% 12%;
+  gap: 0px 0px;
+  grid-template-areas:
+    'reviewCardUserAvatar reviewCardOwner'
+    'reviewCardTitle reviewCardTitle'
+    'reviewCardImg reviewCardImg'
+    'reviewCardVotes reviewCardComment';
+  /* overflow: hidden; */
+  padding: 20px;
+  border: 2px #fff solid;
+  /* margin: 20px 20px; */
 }
 
-#userAvatar {
-  grid-area: 1 / 1 / 2 / 2;
-  max-height: 50px;
+#reviewCardUserAvatar {
+  height: 80%;
+  border-radius: 20%;
 }
-#reviewOwner {
-  grid-area: 1 / 1 / 2 / 2;
+
+.reviewCardOwner {
+  grid-area: reviewCardOwner;
 }
-#reviewImg {
-  grid-area: 1 / 2 / 2 / 3;
+.reviewCardTitle {
+  grid-area: reviewCardTitle;
 }
-#votes {
-  grid-area: 2 / 1 / 4 / 3;
+.reviewCardImg {
+  grid-area: reviewCardImg;
+  width: 100%;
 }
-#comments {
-  grid-area: 4 / 1 / 5 / 2;
+.reviewCardVotes {
+  grid-area: reviewCardVotes;
 }
+.reviewCardComment {
+  grid-area: reviewCardComment;
+}
+
+@media screen and (min-width: 480px) {
+  .reviewList {
+    flex-flow: row wrap;
+  }
+}
+
+/* @media (min-width: 770px) */
+
+/* @media (min-width: 1025px) */
