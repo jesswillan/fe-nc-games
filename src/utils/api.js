@@ -10,8 +10,17 @@ export const getReviews = () => {
   });
 };
 
+export const getReviewById = (id) => {
+  return reviewsApi.get(`/reviews/${id}`).then(({data}) => {
+
+    return data.review;
+  });
+};
+
 export const getUsers = () => {
   return reviewsApi.get('/users').then(({data}) => {
     return data.users
   })
 }
+
+

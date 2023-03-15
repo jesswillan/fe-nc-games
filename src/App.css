@@ -4,10 +4,20 @@
   color: #fff;
 }
 
+a {
+  color: #fff;
+  text-decoration: none;
+}
+
 h1 {
   margin: 0 auto;
   padding: 30px;
   text-align: center;
+  background-color: #b30080;
+}
+
+.backButton {
+  color: #fff;
   background-color: #b30080;
 }
 

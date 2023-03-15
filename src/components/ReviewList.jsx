@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import {getReviews, getUsers} from '../utils/api';
 import ReviewCard from './ReviewCard';
+import findAvatar from '../utils/utils';
 
 const ReviewList = () => {
   const [reviews, setReviews] = useState([]);
@@ -14,12 +15,7 @@ const ReviewList = () => {
       setUsers(usersData);
     });
     setIsLoading(false);
-  });
-
-  const getAvatar = (reviewOwner) => {
-    const user = users.find((user) => user.username === reviewOwner);
-    return user ? user.avatar_url : null;
-  };
+  }, []);
 
   return (
     <main className="reviewListBox">
@@ -29,7 +25,7 @@ const ReviewList = () => {
             <ReviewCard
               key={review.review_id}
               review={review}
-              avatarUrl={getAvatar(review.owner)}
+              avatarUrl={findAvatar(review.owner, users)}
             />
           );
         })}

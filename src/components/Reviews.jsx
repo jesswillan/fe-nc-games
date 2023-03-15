@@ -1,8 +1,8 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import ReviewList from './ReviewList';
-
 const Reviews = () => {
   const [category, setCategory] = useState(null);
+
 
   return (
     <div>
