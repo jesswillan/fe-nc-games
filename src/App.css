@@ -48,29 +48,28 @@ p {
   align-items: center;
 }
 
-.reviewCard {
+.reviewContainer {
   flex: 50%;
-  width: 320px;
-  height: 500px;
-  border: 2px solid #fff;
+  padding: 0px;
 }
-
-
-
 
 .reviewCard {
   display: grid;
   /* margin: 0 auto; */
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 60px 70px 60px auto 60px;
-  grid-template-areas: 
-  'avatar owner owner'
-  'category . created'
-  'title title title'
-  'image image image'
-  'votes . comment';
+  grid-template-areas:
+    'avatar owner owner'
+    'category created created'
+    'title title title'
+    'image image image'
+    'votes . comment';
   column-gap: 5px;
   row-gap: 5px;
+  width: 320px;
+  height: 500px;
+  border: 2px solid #fff;
+  margin: 0px 0px 20px 0px;
 }
 .avatarContainer {
   grid-area: avatar;
@@ -86,6 +85,15 @@ p {
 
 .reviewCardOwner {
   grid-area: owner;
+  justify-self: start;
+}
+.reviewCardCategory {
+  grid-area: category;
+}
+
+.reviewCardCreated {
+  grid-area: created;
+  justify-self: end;
 }
 
 .reviewCardTitle {
@@ -104,14 +112,6 @@ p {
 
 .reviewCardComment {
   grid-area: comment;
-}
-
-.reviewCardCategory {
-  grid-area: category;
-}
-
-.reviewCardDate {
-  grid-area: created;
 }
 
 .commentCard {
