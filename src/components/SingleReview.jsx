@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom';
 import {getReviewById, getUsers} from '../utils/api';
 import findAvatar from '../utils/utils';
 import Comments from './Comments';
-
+import BackButton from './BackButton';
 
 const SingleReview = () => {
   const {review_id} = useParams();
@@ -23,6 +23,7 @@ const SingleReview = () => {
 
   return (
     <div className="reviewCardContainer">
+      <BackButton />
       <div className="reviewCard">
         <div className="avatar">
           <img

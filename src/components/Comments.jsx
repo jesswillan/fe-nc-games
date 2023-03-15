@@ -25,7 +25,6 @@ const Comments = ({review_id}) => {
         <ul className="commentsList">
           {comments.map((comment) => {
             return (
-
               <CommentCard
                 key={comment.comment_id}
                 comment={comment}
