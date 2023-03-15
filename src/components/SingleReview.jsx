@@ -18,8 +18,7 @@ const SingleReview = () => {
     );
     // setIsLoading(false);
   }, []);
-  console.log(singleReview);
-  console.log(users);
+
   return (
     <div className="reviewCardContainer">
       <div className="reviewCard">
