@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {getReviewById, getUsers} from '../utils/api';
 import findAvatar from '../utils/utils';
+import Comments from './Comments';
+
 
 const SingleReview = () => {
   const {review_id} = useParams();
@@ -41,6 +43,7 @@ const SingleReview = () => {
           Comments: {singleReview.comment_count}
         </p>
       </div>
+      <Comments review_id={review_id} />
     </div>
   );
 };

@@ -1,31 +1,42 @@
-import { getCommentsByReviewId } from '../utils/api'
-import {useEffect, useState} from 'react'
-import CommentCard from './CommentCard'
+import {getCommentsByReviewId, getUsers} from '../utils/api';
+import {useEffect, useState} from 'react';
+import CommentCard from './CommentCard';
+import findAvatar from '../utils/utils';
+import NoCommentCard from './NoCommentCard';
 
 const Comments = ({review_id}) => {
+  const [comments, setComments] = useState([]);
+  const [users, setUsers] = useState([]);
 
-  const [comments, setComments] = useState([])
-
-  console.log(review_id, '<<<review_id')
   useEffect(() => {
-    getCommentsByReviewId(review_id).then((commentsData) => {
-      console.log(commentsData, '<<commentsData');
-      setComments(commentsData);
-    });
-  }, [review_id])
-// console.log(comments, '<<<comments')
-  return (
-    <div className='commentsContainer'>
-      <ul className='commentsList'>
-        {comments.map((comment) => {
-          return (
-            console.log(comment, '<<comment')
-            // <CommentCard key={comment.comment_id} comment={comment} />
-          );
-        })}
-      </ul>
-    </div>
-  )
-}
+    Promise.all([getCommentsByReviewId(review_id), getUsers()]).then(
+      ([commentsData, usersData]) => {
+        setComments(commentsData);
+        setUsers(usersData);
+      }
+    );
+  }, [review_id]);
 
-export default Comments
+  return (
+    <div className="commentsContainer">
+      {comments.length === 0 ? (
+        <NoCommentCard />
+      ) : (
+        <ul className="commentsList">
+          {comments.map((comment) => {
+            return (
+
+              <CommentCard
+                key={comment.comment_id}
+                comment={comment}
+                avatar={findAvatar(comment.author, users)}
+              />
+            );
+          })}
+        </ul>
+      )}
+    </div>
+  );
+};
+
+export default Comments;
