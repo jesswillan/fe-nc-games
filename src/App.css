@@ -72,6 +72,15 @@ h1 {
   grid-area: reviewCardComment;
 }
 
+.commentCard {
+  background-color: #b30080;
+  border: 2px solid #fff;
+}
+
+.commentAvatar {
+  width: 20%
+}
+
 @media screen and (min-width: 480px) {
   .reviewList {
     flex-flow: row wrap;
