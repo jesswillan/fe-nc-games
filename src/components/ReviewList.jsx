@@ -19,7 +19,7 @@ const ReviewList = () => {
 
   return (
     <main className="reviewListBox">
-      <ul className="reviewList">
+      <ul className="reviewContainer">
         {reviews.map((review) => {
           return (
             <ReviewCard

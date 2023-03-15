@@ -1,27 +1,31 @@
 import {Link} from 'react-router-dom';
+import { formatDate } from '../utils/utils';
 
 const ReviewCard = ({review, avatarUrl}) => {
   return (
     <Link to={`/reviews/${review.review_id}`}>
-      <div className="reviewCardContainer">
-        <div className="reviewCard">
-          <div className="avatar">
-            <img
-              src={avatarUrl}
-              alt="Review author avatar"
-              id="reviewCardUserAvatar"
-            />
-          </div>
-          <h3 className="reviewCardOwner">{review.owner}</h3>
-          <p className="reviewCardTitle">{review.title}</p>
+      <div className="reviewCard">
+        <div className="avatarContainer">
           <img
-            src={review.review_img_url}
-            alt="Review image."
-            className="reviewCardImg"
+            src={avatarUrl}
+            alt="Review author avatar"
+            className="avatarImg"
           />
-          <p className="reviewCardVotes">Votes: {review.votes}</p>
-          <p className="reviewCardComment">Comments: {review.comment_count}</p>
         </div>
+        <h3 className="reviewCardOwner">{review.owner}</h3>
+        <p className="reviewCardCategory">Category: {review.category}</p>
+        <p className="reviewCardCreated">
+          Date:{' '}
+          {review.created_at ? formatDate(review.created_at) : ''}
+        </p>
+        <p className="reviewCardTitle">{review.title}</p>
+        <img
+          src={review.review_img_url}
+          alt="Review image."
+          className="reviewCardImg"
+        />
+        <p className="reviewCardVotes">Votes: {review.votes}</p>
+        <p className="reviewCardComment">Comments: {review.comment_count}</p>
       </div>
     </Link>
   );

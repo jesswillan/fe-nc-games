@@ -16,60 +16,102 @@ h1 {
   background-color: #b30080;
 }
 
+p {
+  font-size: small;
+}
+
 .backButton {
-  color: #fff;
   background-color: #b30080;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0, #fff 4px 4px 0 1px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px;
+  padding: 12px 40px;
+  text-align: center;
+  font-weight: bold;
 }
 
-.reviewList {
+.backButton:hover {
+  background-color: #fff;
+  color: #b30080;
+  box-shadow: #b30080 4px 4px 0 0, #b30080 4px 4px 0 1px;
+  border: 2px solid #b30080;
+}
+
+.reviewListBox {
   display: flex;
-  flex-direction: column;
-  width: 80vw;
-}
-
-.reviewCardContainer {
-  flex: 50%;
-  width: 300px;
-  /* height: 500px; */
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 .reviewCard {
-  width: 80%;
-  display: grid;
-  grid-template-columns: 30% 70%;
-  grid-template-rows: 12% 12% 64% 12%;
-  gap: 0px 0px;
-  grid-template-areas:
-    'reviewCardUserAvatar reviewCardOwner'
-    'reviewCardTitle reviewCardTitle'
-    'reviewCardImg reviewCardImg'
-    'reviewCardVotes reviewCardComment';
-  /* overflow: hidden; */
-  padding: 20px;
-  border: 2px #fff solid;
-  /* margin: 20px 20px; */
+  flex: 50%;
+  width: 320px;
+  height: 500px;
+  border: 2px solid #fff;
 }
 
-#reviewCardUserAvatar {
-  height: 80%;
-  border-radius: 20%;
+
+
+
+.reviewCard {
+  display: grid;
+  /* margin: 0 auto; */
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 60px 70px 60px auto 60px;
+  grid-template-areas: 
+  'avatar owner owner'
+  'category . created'
+  'title title title'
+  'image image image'
+  'votes . comment';
+  column-gap: 5px;
+  row-gap: 5px;
+}
+.avatarContainer {
+  grid-area: avatar;
+  max-width: 40px;
+  max-height: 40px;
+  margin: 10px;
+}
+
+.avatarImg {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .reviewCardOwner {
-  grid-area: reviewCardOwner;
+  grid-area: owner;
 }
+
 .reviewCardTitle {
-  grid-area: reviewCardTitle;
+  grid-area: title;
 }
+
 .reviewCardImg {
-  grid-area: reviewCardImg;
-  width: 100%;
+  grid-area: image;
+  max-width: 100%;
+  max-height: 100%;
 }
+
 .reviewCardVotes {
-  grid-area: reviewCardVotes;
+  grid-area: votes;
 }
+
 .reviewCardComment {
-  grid-area: reviewCardComment;
+  grid-area: comment;
+}
+
+.reviewCardCategory {
+  grid-area: category;
+}
+
+.reviewCardDate {
+  grid-area: created;
 }
 
 .commentCard {
@@ -78,11 +120,11 @@ h1 {
 }
 
 .commentAvatar {
-  width: 20%
+  width: 20%;
 }
 
 @media screen and (min-width: 480px) {
-  .reviewList {
+  .reviewListBox {
     flex-flow: row wrap;
   }
 }
