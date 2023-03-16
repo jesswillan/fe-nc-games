@@ -12,6 +12,7 @@ const SingleReview = () => {
 
   useEffect(() => {
     // setIsLoading(true);
+    window.scrollTo(0, 0);
     Promise.all([getReviewById(review_id), getUsers()]).then(
       ([reviewData, usersData]) => {
         setSingleReview(reviewData);
