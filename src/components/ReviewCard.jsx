@@ -1,5 +1,5 @@
 import {Link} from 'react-router-dom';
-import { formatDate } from '../utils/utils';
+import {formatDate} from '../utils/utils';
 
 const ReviewCard = ({review, avatarUrl}) => {
   return (
@@ -15,8 +15,7 @@ const ReviewCard = ({review, avatarUrl}) => {
         <h3 className="reviewCardOwner">{review.owner}</h3>
         <p className="reviewCardCategory">Category: {review.category}</p>
         <p className="reviewCardCreated">
-          Date:{' '}
-          {review.created_at ? formatDate(review.created_at) : ''}
+          Date: {review.created_at ? formatDate(review.created_at) : ''}
         </p>
         <p className="reviewCardTitle">{review.title}</p>
         <img
@@ -24,8 +23,8 @@ const ReviewCard = ({review, avatarUrl}) => {
           alt="Review image."
           className="reviewCardImg"
         />
-        <p className="reviewCardVotes">Votes: {review.votes}</p>
-        <p className="reviewCardComment">Comments: {review.comment_count}</p>
+        <p className="reviewCardVotes">{review.votes} votes</p>
+        <p className="reviewCardComment">{review.comment_count} comments</p>
       </div>
     </Link>
   );
