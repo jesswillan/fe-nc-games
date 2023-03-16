@@ -2,24 +2,22 @@ import {useState} from 'react';
 import {voteForReview} from '../utils/api';
 
 const VoteButton = ({voted, setVoted, singleReview, setSingleReciew}) => {
-  const [vote, setVote] = useState('Vote');
   const [upVote, setUpVote] = useState('\u{1F44D}');
-  const [isVotingErr, setIsVotingErr] = useState(false);
+  const [isVotingErr, setIsVotingErr] = useState('');
 
   const handleUpVoteClick = () => {
-    setIsVotingErr(false);
-    setUpVote(`\u{1F44D} voted`);
+    setIsVotingErr('');
+    setUpVote(`\u{1F44D} `);
     setVoted(1);
     voteForReview(singleReview.review_id).catch(() => {
       setVoted(0);
-      setIsVotingErr(true);
-      setUpVote(`Try again!`);
+      setIsVotingErr('Error, try again!');
     });
   };
   return (
     <div className="reviewCardVotes">
       <button id="upVote" onClick={handleUpVoteClick} disabled={voted === 1}>
-        {upVote}
+        {upVote} {isVotingErr}
       </button>
       <p>{singleReview.votes + voted} votes</p>
     </div>
