@@ -27,3 +27,14 @@ export const getCommentsByReviewId = (id) => {
     return data.comments;
   });
 };
+
+export const postComment = (id, comment) => {
+  console.log(id);
+  console.log(comment)
+  return reviewsApi.post(`/reviews/${id}/comments`, comment)
+  .then((response) => {
+    console.log(response)
+  }).catch((err) => {
+    console.log(err.response.data)
+  })
+}

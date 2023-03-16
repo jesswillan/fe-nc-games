@@ -4,6 +4,7 @@ import {getReviewById, getUsers} from '../utils/api';
 import findAvatar, { formatDate } from '../utils/utils';
 import Comments from './Comments';
 import BackButton from './BackButton';
+import CommentForm from './CommentForm';
 
 const SingleReview = () => {
   const {review_id} = useParams();
@@ -48,6 +49,7 @@ const SingleReview = () => {
           Comments: {singleReview.comment_count}
         </p>
       </div>
+      <CommentForm review_id={review_id} />
       <Comments review_id={review_id} />
     </div>
   );
