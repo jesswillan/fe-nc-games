@@ -25,36 +25,43 @@ const SingleReview = () => {
     // setIsLoading(false);
   }, []);
   return (
-    <div className="reviewContainer">
-      <BackButton />
-      <div className="reviewCard">
-        <div className="avatarContainer">
+    <div className='singleReviewContent'>
+      <div className="reviewContainer">
+        <BackButton />
+        <div className="reviewCard">
+          <div className="avatarContainer">
+            <img
+              src={findAvatar(singleReview.owner, users)}
+              alt="Review author avatar"
+              className="avatarImg"
+            />
+          </div>
+          <p className="reviewCardOwner">{singleReview.owner}</p>
+          <p className="reviewCardCategory">{singleReview.category}</p>
+          <p className="reviewCardCreated">
+            Date:{' '}
+            {singleReview.created_at ? formatDate(singleReview.created_at) : ''}
+          </p>
+          <p className="reviewCardTitle">{singleReview.title}</p>
           <img
-            src={findAvatar(singleReview.owner, users)}
-            alt="Review author avatar"
-            className="avatarImg"
+            src={singleReview.review_img_url}
+            alt="Review image."
+            className="reviewCardImg"
           />
+          {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
+          <VoteButton
+            singleReview={singleReview}
+            setSingleReview={setSingleReview}
+            voted={voted}
+            setVoted={setVoted}
+          />
+          <p className="reviewCardComment">
+            Comments: {singleReview.comment_count}
+          </p>
         </div>
-        <h3 className="reviewCardOwner">{singleReview.owner}</h3>
-        <p className="reviewCardCategory">Category: {singleReview.category}</p>
-        <p className="reviewCardCreated">
-          Date:{' '}
-          {singleReview.created_at ? formatDate(singleReview.created_at) : ''}
-        </p>
-        <p className="reviewCardTitle">{singleReview.title}</p>
-        <img
-          src={singleReview.review_img_url}
-          alt="Review image."
-          className="reviewCardImg"
-        />
-        {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
-      <VoteButton singleReview={singleReview} setSingleReview={setSingleReview} voted={voted} setVoted={setVoted} />
-        <p className="reviewCardComment">
-          Comments: {singleReview.comment_count}
-        </p>
+        <CommentForm review_id={review_id} />
+        <Comments review_id={review_id} />
       </div>
-      <CommentForm review_id={review_id} />
-      <Comments review_id={review_id} />
     </div>
   );
 };
