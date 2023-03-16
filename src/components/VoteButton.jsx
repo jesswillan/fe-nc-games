@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {voteForReview} from '../utils/api';
 
-const VoteButton = ({voted, setVoted, singleReview}) => {
+const VoteButton = ({voted, setVoted, singleReview, setSingleReciew}) => {
   const [vote, setVote] = useState('Vote');
   const [upVote, setUpVote] = useState('\u{1F44D}');
   const [isVotingErr, setIsVotingErr] = useState(false);
@@ -21,7 +21,7 @@ const VoteButton = ({voted, setVoted, singleReview}) => {
       <button id="upVote" onClick={handleUpVoteClick} disabled={voted === 1}>
         {upVote}
       </button>
-      <p>{singleReview.votes} votes</p>
+      <p>{singleReview.votes + voted} votes</p>
     </div>
   );
 };

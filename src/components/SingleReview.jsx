@@ -47,7 +47,7 @@ const SingleReview = () => {
           className="reviewCardImg"
         />
         {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
-      <VoteButton singleReview={singleReview} voted={voted} setVoted={setVoted} />
+      <VoteButton singleReview={singleReview} setSingleReview={setSingleReview} voted={voted} setVoted={setVoted} />
         <p className="reviewCardComment">
           Comments: {singleReview.comment_count}
         </p>

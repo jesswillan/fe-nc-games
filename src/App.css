@@ -110,6 +110,21 @@ p {
   grid-area: votes;
 }
 
+#upVote {
+  background-color: #b30080;
+  border: 2px solid #fff;
+}
+
+#upVote:hover {
+  border: 2px solid #b30080
+}
+
+#upVote:disabled {
+  background-color: #b30080;
+  color: #fff;
+  border: 2px solid #fff;
+}
+
 .reviewCardComment {
   grid-area: comment;
 }
