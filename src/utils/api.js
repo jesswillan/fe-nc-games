@@ -27,3 +27,13 @@ export const getCommentsByReviewId = (id) => {
     return data.comments;
   });
 };
+
+export const voteForReview = (id) => {
+  return reviewsApi
+    .patch(`reviews/${id}`, {
+      inc_votes: 1,
+    })
+    .then(({data}) => {
+      return data;
+    });
+};
