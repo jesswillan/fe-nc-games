@@ -28,6 +28,7 @@ export const getCommentsByReviewId = (id) => {
   });
 };
 
+<<<<<<< HEAD
 export const postComment = (id, comment) => {
   console.log(id);
   console.log(comment)
@@ -38,3 +39,14 @@ export const postComment = (id, comment) => {
     console.log(err.response.data)
   })
 }
+=======
+export const voteForReview = (id) => {
+  return reviewsApi
+    .patch(`reviews/${id}`, {
+      inc_votes: 1,
+    })
+    .then(({data}) => {
+      return data;
+    });
+};
+>>>>>>> 6c4b0724739e0dc1dac788d8e6c6fd8e05b49260
