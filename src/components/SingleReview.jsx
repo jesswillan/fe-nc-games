@@ -1,7 +1,9 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {getReviewById, getUsers} from '../utils/api';
-import findAvatar from '../utils/utils';
+import findAvatar, { formatDate } from '../utils/utils';
+import Comments from './Comments';
+import BackButton from './BackButton';
 
 const SingleReview = () => {
   const {review_id} = useParams();
@@ -10,6 +12,7 @@ const SingleReview = () => {
 
   useEffect(() => {
     // setIsLoading(true);
+    window.scrollTo(0, 0);
     Promise.all([getReviewById(review_id), getUsers()]).then(
       ([reviewData, usersData]) => {
         setSingleReview(reviewData);
@@ -18,18 +21,22 @@ const SingleReview = () => {
     );
     // setIsLoading(false);
   }, []);
-
   return (
-    <div className="reviewCardContainer">
+    <div className="reviewContainer">
+      <BackButton />
       <div className="reviewCard">
-        <div className="avatar">
+        <div className="avatarContainer">
           <img
             src={findAvatar(singleReview.owner, users)}
             alt="Review author avatar"
-            id="reviewCardUserAvatar"
+            className="avatarImg"
           />
         </div>
         <h3 className="reviewCardOwner">{singleReview.owner}</h3>
+        <p className="reviewCardCategory">Category: {singleReview.category}</p>
+        <p className="reviewCardCreated">
+          Date: {singleReview.created_at ? formatDate(singleReview.created_at) : ''}
+        </p>
         <p className="reviewCardTitle">{singleReview.title}</p>
         <img
           src={singleReview.review_img_url}
@@ -41,6 +48,7 @@ const SingleReview = () => {
           Comments: {singleReview.comment_count}
         </p>
       </div>
+      <Comments review_id={review_id} />
     </div>
   );
 };
