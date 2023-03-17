@@ -31,10 +31,10 @@ export const getCommentsByReviewId = (id) => {
 export const postComment = (id, comment) => {
   return reviewsApi.post(`/reviews/${id}/comments`, comment)
   .then((response) => {
-    console.log(response.status)
-    return response.status
+    console.log(response.data.comment, 'res in api')
+    return response
   }).catch((err) => {
-    console.log(err.response.status)
+    console.log(err.response, 'err res in api')
     return err.response.status
   })
 }

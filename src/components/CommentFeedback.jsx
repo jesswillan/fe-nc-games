@@ -1,16 +1,22 @@
 import { useEffect, useState } from 'react'
 
 const CommentFeedback = (feedback) => {
-  // console.log(response, 'res in commentfeedback')
+
 
   const [commentFeedback, setCommentFeedback] = useState('')
 
   useEffect(() => {
-    if (feedback === 404) {
-      setCommentFeedback('Your comment was successfully posted')
+    if (feedback.feedBack === 404) {
+      setCommentFeedback('Please enter a valid username!');
+    } else if (feedback.feedBack === 201) {
+      setCommentFeedback('Your comment was successfully added!')
+    } else {
+
+      setCommentFeedback('')
     }
-  })
-console.log(commentFeedback, 'feedback in feedback')
+
+  }, [feedback])
+
   return <p>{`${commentFeedback}`}</p>
 
 }

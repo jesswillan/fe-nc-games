@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {getReviewById, getUsers} from '../utils/api';
+import {getCommentsByReviewId, getReviewById, getUsers} from '../utils/api';
 import findAvatar, {formatDate} from '../utils/utils';
 import Comments from './Comments';
 import BackButton from './BackButton';
@@ -14,18 +14,21 @@ const SingleReview = () => {
   const [users, setUsers] = useState([]);
   const [voted, setVoted] = useState(0);
   const [feedBack, setFeedback] = useState('')
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     // setIsLoading(true);
     window.scrollTo(0, 0);
-    Promise.all([getReviewById(review_id), getUsers()]).then(
-      ([reviewData, usersData]) => {
+    Promise.all([getReviewById(review_id), getUsers(), getCommentsByReviewId(review_id)]).then(
+      ([reviewData, usersData, commentsData]) => {
         setSingleReview(reviewData);
         setUsers(usersData);
+        setComments(commentsData);
       }
     );
     // setIsLoading(false);
   }, []);
+
   return (
     <div className='singleReviewContent'>
       <div className="reviewContainer">
@@ -61,9 +64,9 @@ const SingleReview = () => {
             Comments: {singleReview.comment_count}
           </p>
         </div>
-        <CommentForm review_id={review_id} setFeedback={setFeedback} />
+        <CommentForm review_id={review_id} setFeedback={setFeedback} comments={comments} setComments={setComments} />
         <CommentFeedback feedBack={feedBack} />
-        <Comments review_id={review_id} />
+        <Comments review_id={review_id} comments={comments} />
       </div>
     </div>
   );
