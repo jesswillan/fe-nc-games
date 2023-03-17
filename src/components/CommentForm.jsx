@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import { postComment } from '../utils/api'
 
-const CommentForm = ({review_id}) => {
+const CommentForm = ({review_id, setFeedback}) => {
 const [username, setUsername]= useState('')
 const [comment, setComment] = useState('')
 const [commentBody, setCommentBody] = useState('')
+// const [feedBack, setFeedback] = useState('')
 
 // console.log(commentBody, '<<<comment body')
 
@@ -16,6 +17,14 @@ const handleSubmit = (event) => {
 useEffect(() => {
   if (commentBody !== '') {
     postComment(review_id, commentBody)
+      .then((response) => {
+        console.log(response, 'res in comment form');
+        setFeedback(response)
+      })
+      .catch((err) => {
+        console.log(err, 'err in comment form');
+        setFeedback(err,)
+      });
   }
 })
 

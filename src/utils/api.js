@@ -31,9 +31,11 @@ export const getCommentsByReviewId = (id) => {
 export const postComment = (id, comment) => {
   return reviewsApi.post(`/reviews/${id}/comments`, comment)
   .then((response) => {
-    console.log(response)
+    console.log(response.status)
+    return response.status
   }).catch((err) => {
-    console.log(err.response.data)
+    console.log(err.response.status)
+    return err.response.status
   })
 }
 export const voteForReview = (id) => {

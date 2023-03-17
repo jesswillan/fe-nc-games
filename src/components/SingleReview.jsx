@@ -6,12 +6,14 @@ import Comments from './Comments';
 import BackButton from './BackButton';
 import CommentForm from './CommentForm';
 import VoteButton from './VoteButton';
+import CommentFeedback from './CommentFeedback';
 
 const SingleReview = () => {
   const {review_id} = useParams();
   const [singleReview, setSingleReview] = useState({});
   const [users, setUsers] = useState([]);
   const [voted, setVoted] = useState(0);
+  const [feedBack, setFeedback] = useState('')
 
   useEffect(() => {
     // setIsLoading(true);
@@ -59,7 +61,8 @@ const SingleReview = () => {
             Comments: {singleReview.comment_count}
           </p>
         </div>
-        <CommentForm review_id={review_id} />
+        <CommentForm review_id={review_id} setFeedback={setFeedback} />
+        <CommentFeedback feedBack={feedBack} />
         <Comments review_id={review_id} />
       </div>
     </div>
