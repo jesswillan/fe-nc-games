@@ -20,7 +20,7 @@ const ReviewCard = ({review, avatarUrl}) => {
         <p className="reviewCardTitle">{review.title}</p>
         <img
           src={review.review_img_url}
-          alt="Review image."
+          alt="Review."
           className="reviewCardImg"
         />
         <p className="reviewCardVotes">{review.votes} votes</p>

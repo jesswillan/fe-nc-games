@@ -1,21 +1,12 @@
-import {getCommentsByReviewId, getUsers} from '../utils/api';
+import {getUsers} from '../utils/api';
 import {useEffect, useState} from 'react';
 import CommentCard from './CommentCard';
 import findAvatar from '../utils/utils';
 import NoCommentCard from './NoCommentCard';
 
-const Comments = ({review_id, comments}) => {
-  // const [comments, setComments] = useState([]);
+const Comments = ({comments}) => {
   const [users, setUsers] = useState([]);
-  // console.log(comments, 'comments');
-  // useEffect(() => {
-  //   Promise.all([getCommentsByReviewId(review_id), getUsers()]).then(
-  //     ([commentsData, usersData]) => {
-  //       setComments(commentsData);
-  //       setUsers(usersData);
-  //     }
-  //   );
-  // }, [review_id]);
+
 
   useEffect(() => {
     getUsers().then((users) => {

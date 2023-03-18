@@ -6,15 +6,15 @@ import findAvatar from '../utils/utils';
 const ReviewList = () => {
   const [reviews, setReviews] = useState([]);
   const [users, setUsers] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(true);
+    // setIsLoading(true);
     Promise.all([getReviews(), getUsers()]).then(([reviewsData, usersData]) => {
       setReviews(reviewsData);
       setUsers(usersData);
     });
-    setIsLoading(false);
+    // setIsLoading(false);
   }, []);
 
   return (
