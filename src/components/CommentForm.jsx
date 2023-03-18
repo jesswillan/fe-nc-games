@@ -31,7 +31,7 @@ useEffect(() => {
   return (
     <form className='CommentForm' onSubmit={handleSubmit} >
       <label>Username<input type='text' required onChange={(event) => setUsername(event.target.value)} ></input></label>
-      <label>Comment<input type='text' onChange={(event) => setComment(event.target.value)} ></input></label>
+      <label>Comment<input type='text' required onChange={(event) => setComment(event.target.value)} ></input></label>
       <button type='submit' >Add Comment</button>
     </form>
   )

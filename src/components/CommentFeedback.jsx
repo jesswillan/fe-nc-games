@@ -6,9 +6,9 @@ const CommentFeedback = (feedback) => {
   const [commentFeedback, setCommentFeedback] = useState('')
 
   useEffect(() => {
-    if (feedback.feedBack === 404) {
+    if (feedback.feedback === 404) {
       setCommentFeedback('Please enter a valid username!');
-    } else if (feedback.feedBack === 201) {
+    } else if (feedback.feedback === 201) {
       setCommentFeedback('Your comment was successfully added!')
     } else {
 

@@ -13,7 +13,7 @@ const SingleReview = () => {
   const [singleReview, setSingleReview] = useState({});
   const [users, setUsers] = useState([]);
   const [voted, setVoted] = useState(0);
-  const [feedBack, setFeedback] = useState('')
+  const [feedback, setFeedback] = useState('')
   const [comments, setComments] = useState([])
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const SingleReview = () => {
       }
     );
     // setIsLoading(false);
-  }, []);
+  }, [review_id]);
 
   return (
     <div className='singleReviewContent'>
@@ -50,7 +50,7 @@ const SingleReview = () => {
           <p className="reviewCardTitle">{singleReview.title}</p>
           <img
             src={singleReview.review_img_url}
-            alt="Review image."
+            alt="Game being played"
             className="reviewCardImg"
           />
           {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
@@ -65,7 +65,7 @@ const SingleReview = () => {
           </p>
         </div>
         <CommentForm review_id={review_id} setFeedback={setFeedback} comments={comments} setComments={setComments} />
-        <CommentFeedback feedBack={feedBack} />
+        <CommentFeedback feedback={feedback} />
         <Comments review_id={review_id} comments={comments} />
       </div>
     </div>
