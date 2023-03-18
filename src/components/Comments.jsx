@@ -4,18 +4,24 @@ import CommentCard from './CommentCard';
 import findAvatar from '../utils/utils';
 import NoCommentCard from './NoCommentCard';
 
-const Comments = ({review_id}) => {
-  const [comments, setComments] = useState([]);
+const Comments = ({review_id, comments}) => {
+  // const [comments, setComments] = useState([]);
   const [users, setUsers] = useState([]);
+  // console.log(comments, 'comments');
+  // useEffect(() => {
+  //   Promise.all([getCommentsByReviewId(review_id), getUsers()]).then(
+  //     ([commentsData, usersData]) => {
+  //       setComments(commentsData);
+  //       setUsers(usersData);
+  //     }
+  //   );
+  // }, [review_id]);
 
   useEffect(() => {
-    Promise.all([getCommentsByReviewId(review_id), getUsers()]).then(
-      ([commentsData, usersData]) => {
-        setComments(commentsData);
-        setUsers(usersData);
-      }
-    );
-  }, [review_id]);
+    getUsers().then((users) => {
+      setUsers(users);
+    });
+  }, []);
 
   return (
     <div className="commentsContainer">

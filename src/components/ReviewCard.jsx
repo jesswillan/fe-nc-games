@@ -12,8 +12,8 @@ const ReviewCard = ({review, avatarUrl}) => {
             className="avatarImg"
           />
         </div>
-        <h3 className="reviewCardOwner">{review.owner}</h3>
-        <p className="reviewCardCategory">Category: {review.category}</p>
+        <p className="reviewCardOwner">{review.owner}</p>
+        <p className="reviewCardCategory">{review.category}</p>
         <p className="reviewCardCreated">
           Date: {review.created_at ? formatDate(review.created_at) : ''}
         </p>

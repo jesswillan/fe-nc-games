@@ -13,7 +13,9 @@ h1 {
   margin: 0 auto;
   padding: 30px;
   text-align: center;
-  background-color: #b30080;
+  /* background-color: #b30080; */
+background: rgb(31,41,84);
+background: linear-gradient(45deg, rgba(31,41,84,1) 10%, rgba(179,0,128,1) 100%);
 }
 
 p {
@@ -21,10 +23,12 @@ p {
 }
 
 .backButton {
-  background-color: #b30080;
+  /* background-color: #b30080; */
+  background: rgb(31,41,84);
+background: linear-gradient(45deg, rgba(31,41,84,1) 10%, rgba(179,0,128,1) 100%);
   border: 2px solid #fff;
   border-radius: 4px;
-  box-shadow: #fff 4px 4px 0 0, #fff 4px 4px 0 1px;
+  /* box-shadow: #fff 4px 4px 0 0, #fff 4px 4px 0 1px; */
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -36,20 +40,30 @@ p {
 }
 
 .backButton:hover {
-  background-color: #fff;
-  color: #b30080;
-  box-shadow: #b30080 4px 4px 0 0, #b30080 4px 4px 0 1px;
-  border: 2px solid #b30080;
+  background-color: #1f2954;
+  color: #fff;
+  box-shadow: #1f2954 4px 4px 0 0, #1f2954 4px 4px 0 1px;
+  border: 2px solid #1f2954;
 }
 
 .reviewListBox {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.singleReviewContent {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .reviewContainer {
-  flex: 50%;
+  flex: 100%;
   padding: 0px;
 }
 
@@ -76,6 +90,7 @@ p {
   max-width: 40px;
   max-height: 40px;
   margin: 10px;
+  justify-self: start;
 }
 
 .avatarImg {
@@ -86,9 +101,11 @@ p {
 .reviewCardOwner {
   grid-area: owner;
   justify-self: start;
+  font-size: 1.2em;
 }
 .reviewCardCategory {
   grid-area: category;
+  margin-left: 10px;
 }
 
 .reviewCardCreated {
@@ -113,10 +130,12 @@ p {
 #upVote {
   background-color: #b30080;
   border: 2px solid #fff;
+  color: #fff;
 }
 
 #upVote:hover {
-  border: 2px solid #b30080
+  border: 2px solid #b30080;
+  color: #fff;
 }
 
 #upVote:disabled {

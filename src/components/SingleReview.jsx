@@ -1,58 +1,73 @@
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {getReviewById, getUsers} from '../utils/api';
+import {getCommentsByReviewId, getReviewById, getUsers} from '../utils/api';
 import findAvatar, {formatDate} from '../utils/utils';
 import Comments from './Comments';
 import BackButton from './BackButton';
+import CommentForm from './CommentForm';
 import VoteButton from './VoteButton';
+import CommentFeedback from './CommentFeedback';
 
 const SingleReview = () => {
   const {review_id} = useParams();
   const [singleReview, setSingleReview] = useState({});
   const [users, setUsers] = useState([]);
   const [voted, setVoted] = useState(0);
+  const [feedback, setFeedback] = useState('')
+  const [comments, setComments] = useState([])
 
   useEffect(() => {
     // setIsLoading(true);
     window.scrollTo(0, 0);
-    Promise.all([getReviewById(review_id), getUsers()]).then(
-      ([reviewData, usersData]) => {
+    Promise.all([getReviewById(review_id), getUsers(), getCommentsByReviewId(review_id)]).then(
+      ([reviewData, usersData, commentsData]) => {
         setSingleReview(reviewData);
         setUsers(usersData);
+        setComments(commentsData);
       }
     );
     // setIsLoading(false);
-  }, []);
+  }, [review_id]);
+
   return (
-    <div className="reviewContainer">
-      <BackButton />
-      <div className="reviewCard">
-        <div className="avatarContainer">
+    <div className='singleReviewContent'>
+      <div className="reviewContainer">
+        <BackButton />
+        <div className="reviewCard">
+          <div className="avatarContainer">
+            <img
+              src={findAvatar(singleReview.owner, users)}
+              alt="Review author avatar"
+              className="avatarImg"
+            />
+          </div>
+          <p className="reviewCardOwner">{singleReview.owner}</p>
+          <p className="reviewCardCategory">{singleReview.category}</p>
+          <p className="reviewCardCreated">
+            Date:{' '}
+            {singleReview.created_at ? formatDate(singleReview.created_at) : ''}
+          </p>
+          <p className="reviewCardTitle">{singleReview.title}</p>
           <img
-            src={findAvatar(singleReview.owner, users)}
-            alt="Review author avatar"
-            className="avatarImg"
+            src={singleReview.review_img_url}
+            alt="Game being played"
+            className="reviewCardImg"
           />
+          {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
+          <VoteButton
+            singleReview={singleReview}
+            setSingleReview={setSingleReview}
+            voted={voted}
+            setVoted={setVoted}
+          />
+          <p className="reviewCardComment">
+            Comments: {singleReview.comment_count}
+          </p>
         </div>
-        <h3 className="reviewCardOwner">{singleReview.owner}</h3>
-        <p className="reviewCardCategory">Category: {singleReview.category}</p>
-        <p className="reviewCardCreated">
-          Date:{' '}
-          {singleReview.created_at ? formatDate(singleReview.created_at) : ''}
-        </p>
-        <p className="reviewCardTitle">{singleReview.title}</p>
-        <img
-          src={singleReview.review_img_url}
-          alt="Review image."
-          className="reviewCardImg"
-        />
-        {/* <p className="reviewCardVotes">Votes: {singleReview.votes + voted}</p> */}
-      <VoteButton singleReview={singleReview} setSingleReview={setSingleReview} voted={voted} setVoted={setVoted} />
-        <p className="reviewCardComment">
-          Comments: {singleReview.comment_count}
-        </p>
+        <CommentForm review_id={review_id} setFeedback={setFeedback} comments={comments} setComments={setComments} />
+        <CommentFeedback feedback={feedback} />
+        <Comments review_id={review_id} comments={comments} />
       </div>
-      <Comments review_id={review_id} />
     </div>
   );
 };
